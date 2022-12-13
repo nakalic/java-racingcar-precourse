@@ -15,17 +15,21 @@ public class Car {
         }
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
     public String getNowPosition() {
         String nowPosition = "";
         for (int i = 0; i < position; i++) {
             nowPosition += "-";
         }
         return nowPosition;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public int compareCarPosition(Car car) {
+        return this.position - car.position;
     }
 
     private void validateNameSize(String name) {
