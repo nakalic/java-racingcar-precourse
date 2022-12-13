@@ -7,7 +7,7 @@ import java.util.List;
 
 public class InputView {
     public List<String> inputCars() {
-        // 여기서 검증을 해줘야 하나? 계속 입력 어떻게 받지?
+        // 여기서 검증을 해줘야 하나? 올바른 값 들어올 때 까지 입력 어떻게 받지?
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String[] cars = Console.readLine().split(",");
         return new ArrayList<>(Arrays.asList(cars));

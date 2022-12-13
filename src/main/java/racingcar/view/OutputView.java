@@ -9,7 +9,7 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printCarAndPosition(Car car) {
+    static public void printCarAndPosition(Car car) {
         System.out.print(car + " : " + car.getNowPosition());
         System.out.println();
     }
