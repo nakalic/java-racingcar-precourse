@@ -28,6 +28,7 @@ public class InputView {
     }
 
     private void validateTryCount(String input) {
+        // 숫자인지 체크 -> 0보다 큰지 체크 -> 소수가 아닌 자연수인지 체크? 오버 엔지니어링?
         checkNaturalNumber(input);
         checkOverThanZero(input);
     }
