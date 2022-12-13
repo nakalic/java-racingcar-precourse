@@ -12,6 +12,20 @@ public class RacingGame {
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
 
+    public void run() {
+        List<Car> cars = inputView.inputCars()
+                .stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+
+        int tryCount = inputView.inputTryCount();
+        outputView.printResult();
+        // tryCount 대신 inputView.inputTryCount()를 매개변수로 주고 싶지만 printResult 구문 때문에 일단 분리
+        racingByTryCount(cars, tryCount);
+
+        outputView.printFinalWinner(getFinalWinner(cars));
+    }
+
     private void racingByTryCount(List<Car> cars, int tryCount) {
         for (int i = 0; i < tryCount; i++) {
             racing(cars);
