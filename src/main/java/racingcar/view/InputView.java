@@ -36,7 +36,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("시도 횟수는 숫자여야합니다.");
+            throw new IllegalArgumentException("시도 횟수는 자연수여야합니다.");
         }
     }
 
