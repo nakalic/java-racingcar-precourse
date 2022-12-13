@@ -14,6 +14,7 @@ public class InputView {
 
     public int inputTryCount() {
         // TryCount 라는 클래스를 만드는 것은 오버엔지니어링일 것 같다.
+        System.out.println("시도할 회수는 몇회인가요?");
         String input = Console.readLine();
         validateTryCount(input);
         return Integer.parseInt(input);
