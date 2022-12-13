@@ -7,6 +7,7 @@ import java.util.List;
 
 public class InputView {
     public List<String> inputCars() {
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String[] cars = Console.readLine().split(",");
         return new ArrayList<>(Arrays.asList(cars));
     }
