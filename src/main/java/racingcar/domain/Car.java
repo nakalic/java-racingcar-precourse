@@ -12,6 +12,7 @@ public class Car implements Comparable<Car>{
     }
 
     public void moveForward() {
+
         if (Randoms.pickNumberInRange(1, 4) >= 4) {
             this.position += 1;
         }
