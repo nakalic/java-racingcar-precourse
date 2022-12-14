@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import racingcar.domain.Car;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
@@ -15,7 +16,8 @@ public class RacingGame {
 
     public void run() {
         List<Car> cars = makeCars();
-        makeTryCount(cars);
+        int tryCount = makeTryCount(cars);
+        racingByTryCount(cars, tryCount);
         makeFinalWinnerAndPrint(cars);
     }
 
@@ -24,11 +26,11 @@ public class RacingGame {
         outputView.printFinalWinner(finalWinner);
     }
 
-    private void makeTryCount(List<Car> cars) {
+    private int makeTryCount(List<Car> cars) {
         int tryCount = inputView.inputTryCount();
         outputView.printResult();
         // tryCount 대신 inputView.inputTryCount()를 매개변수로 주고 싶지만 printResult 구문 때문에 일단 분리
-        racingByTryCount(cars, tryCount);
+        return tryCount;
     }
 
     private List<Car> makeCars() {
@@ -40,9 +42,16 @@ public class RacingGame {
 
     private void racingByTryCount(List<Car> cars, int tryCount) {
         for (int i = 0; i < tryCount; i++) {
-            racing(cars);
+            for (Car car : cars) {
+                car.moveForward();
+                OutputView.printCarAndPosition(car);
+            }
             System.out.println();
         }
+//        cars.stream()
+//                .flatMap(car -> Stream.generate(() -> car).limit(tryCount))
+//                .peek(Car::moveForward)
+//                .forEach(OutputView::printCarAndPosition);
     }
 
     private List<Car> getFinalWinner(List<Car> cars) {
@@ -55,12 +64,5 @@ public class RacingGame {
         return cars.stream()
                 .filter(car -> maxPosition == car.getPosition())
                 .collect(Collectors.toList());
-    }
-
-    private void racing(List<Car> cars) {
-        for (Car car : cars) {
-            car.moveForward();
-            OutputView.printCarAndPosition(car);
-        }
     }
 }
