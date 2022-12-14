@@ -23,9 +23,7 @@ public class Cars {
 
     public List<Car> getFinalWinner() {
         final List<Car> finalWinner = new ArrayList<>();
-        // List<Car> 요소의 첫번째를 add 하고 싶은데 어떻게 해야할까?
-        // 이대로 하면 value >0 조건문이 실행되지 않으면 처음에 이름이 a인 Car가 차지하고 있다..
-        finalWinner.add(new Car("a"));
+        finalWinner.add(cars.remove(0));
 
         for (Car car : cars) {
             // for문 내용이 너무 지저분한데 정리할 수 있지 않을까?
