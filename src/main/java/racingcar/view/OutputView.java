@@ -10,7 +10,11 @@ public class OutputView {
     }
 
     static public void printCarAndPosition(Car car) {
-        System.out.print(car + " : " + car.getNowPosition());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < car.getPosition(); i++) {
+            stringBuilder.append("-");
+        }
+        System.out.print(car + " : " + stringBuilder);
         System.out.println();
     }
 

@@ -1,6 +1,8 @@
 package racingcar.domain;
 
-public class Car {
+import camp.nextstep.edu.missionutils.Randoms;
+
+public class Car implements Comparable<Car>{
     private final String name;
     private int position = 0;
 
@@ -9,32 +11,30 @@ public class Car {
         this.name = name;
     }
 
-    public void moveForward(int number) {
-        if (number >= 4) {
+    public void moveForward() {
+        if (Randoms.pickNumberInRange(1, 4) >= 4) {
             this.position += 1;
         }
     }
 
-    public String getNowPosition() {
-        String nowPosition = "";
-        for (int i = 0; i < position; i++) {
-            nowPosition += "-";
-        }
-        return nowPosition;
+    public int getPosition() {
+        return position;
     }
 
+    // 지우고 getName 쓰는게 낫나?
     @Override
     public String toString() {
         return name;
-    }
-
-    public int compareCarPosition(Car car) {
-        return this.position - car.position;
     }
 
     private void validateNameSize(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
         }
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return this.position- car.position;
     }
 }
