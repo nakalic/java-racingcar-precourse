@@ -1,6 +1,8 @@
 package racingcar;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
@@ -44,13 +46,14 @@ public class RacingGame {
     }
 
     private List<Car> getFinalWinner(List<Car> cars) {
-        // 처음 보는 타입
-        AtomicInteger maxPosition = new AtomicInteger();
-        cars.forEach(car ->
-                        maxPosition.set(Math.max(car.getPosition(), maxPosition.get())));
+        int maxPosition = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                //.orElseThrow 사용하면 반환값 OptionalInt -> int 변경
+                .orElseThrow(NoSuchElementException::new);
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition.get())
+                .filter(car -> maxPosition == car.getPosition())
                 .collect(Collectors.toList());
     }
 
